@@ -40,7 +40,7 @@ public class GodCommand implements CommandExecutor, Listener, TabCompleter {
 
         if (godModePlayers.contains(player)) {
             godModePlayers.remove(player);
-            player.sendMessage(mm.deserialize("<#d900ff>God mode <#ff5555>disabled."));
+            player.sendMessage(mm.deserialize("<#d900ff>God mode <#ffffff>disabled."));
         } else {
             godModePlayers.add(player);
             player.sendMessage(mm.deserialize("<#d900ff>God mode <#00fff7>enabled."));
