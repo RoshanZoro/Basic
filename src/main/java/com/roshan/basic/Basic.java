@@ -2,21 +2,18 @@ package com.roshan.basic;
 
 import com.roshan.basic.commands.*;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.Location;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class Basic extends JavaPlugin {
-    private final Map<UUID, Location> homes = new HashMap<>();
+
     private static Basic instance;
     private TpaManager tpaManager;
+    private HomeManager homeManager;
 
     @Override
     public void onEnable() {
         instance = this;
         tpaManager = new TpaManager();
-
+        homeManager = new HomeManager(); // Persistent homes
 
         getLogger().info("Basic plugin enabled.");
 
@@ -25,8 +22,8 @@ public class Basic extends JavaPlugin {
         getCommand("tpaccept").setExecutor(new TpAcceptCommand());
         getCommand("tpdeny").setExecutor(new TpDenyCommand());
 
-        getCommand("sethome").setExecutor(new SetHomeCommand(homes));
-        getCommand("home").setExecutor(new HomeCommand(homes));
+        getCommand("sethome").setExecutor(new SetHomeCommand(homeManager));
+        getCommand("home").setExecutor(new HomeCommand(homeManager));
     }
 
     @Override
@@ -40,5 +37,9 @@ public class Basic extends JavaPlugin {
 
     public TpaManager getTpaManager() {
         return tpaManager;
+    }
+
+    public HomeManager getHomeManager() {
+        return homeManager;
     }
 }
