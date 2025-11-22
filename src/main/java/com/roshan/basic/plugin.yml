@@ -1,0 +1,51 @@
+name: Basic
+version: 1.0
+main: com.roshan.basic.Basic
+api-version: 1.21
+author: Roshan
+website: https://roshan.wtf
+description: Basic plugin with god mode and TPA commands
+
+commands:
+  god:
+    description: Enables or disables god mode
+    permission: basic.god
+    hidden: true
+
+  tpa:
+    description: Send a teleport request to another player
+    permission: basic.tpa
+    hidden: false
+
+  tpaccept:
+    description: Accept a teleport request
+    permission: basic.tpa
+    hidden: false
+
+  tpdeny:
+    description: Deny a teleport request
+    permission: basic.tpa
+    hidden: false
+
+  sethome:
+    description: Set your home location
+    permission: basic.home
+    hidden: true
+
+  home:
+    description: Teleport to your home
+    permission: basic.home
+    hidden: true
+
+permissions:
+  basic.god:
+    description: Allows use of /god
+    default: op
+
+  basic.tpa:
+    description: Allows use of /tpa, /tpaccept, /tpdeny
+    default: true
+
+  basic.home:
+    description: Allows players to set and teleport to home
+    default: true
