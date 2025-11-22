@@ -2,19 +2,19 @@ package com.roshan.basic.commands;
 
 import com.roshan.basic.Basic;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.plugin.PluginManager;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class GodCommand implements CommandExecutor, Listener {
+public class GodCommand implements CommandExecutor, Listener, TabCompleter {
 
     private final Set<Player> godModePlayers = new HashSet<>();
     private final MiniMessage mm = MiniMessage.miniMessage();
@@ -54,5 +54,11 @@ public class GodCommand implements CommandExecutor, Listener {
         if (event.getEntity() instanceof Player player && godModePlayers.contains(player)) {
             event.setCancelled(true);
         }
+    }
+
+    // Hide from tab completion
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        return Collections.emptyList();
     }
 }
